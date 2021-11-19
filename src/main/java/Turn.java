@@ -16,7 +16,8 @@ public class Turn {
         }
     }
 
-    public void checkWhosTurnItIsTest() {
+    public boolean checkWhosTurnItIsTest() {
         isItThePlayersTurn = !isItThePlayersTurn;
+        return isItThePlayersTurn;
     }
 }

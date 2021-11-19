@@ -22,18 +22,7 @@ public class Board {
     }
 
     public void printCurrentBoard() {
-        System.out.println( "\n\n" );
-        System.out.println(  "\n\n" );
-        System.out.println(  "\n\n\t\t" + currentBoard [0] + "   | " +currentBoard [1]+ "  | " +currentBoard [2]);
-        System.out.println(  " \t\t    |    |   " );
-        System.out.println(  " \t\t ___|____|___ " );
-        System.out.println(  "\n\n\t\t" +currentBoard [3]+ "   | " +currentBoard [4]+ "  | " +currentBoard [5]);
-        System.out.println(  " \t\t    |    |   " );
-        System.out.println(  " \t\t ___|____|___ " );
-        System.out.println(  "\n\n\t\t" +currentBoard [6]+ "   | " +currentBoard [7]+ "  | " +currentBoard [8]);
-        System.out.println(  " \t\t    |    |   " );
-        System.out.println(  " \t\t    |    |   " );
-        System.out.println(  "\n\n" );
+        System.out.println("\t\t" +0+" | "+ 0 +" | "+0+"\n\t\t"+0+" | "+0+" | "+0+"\n\t\t"+0+" | "+0+" | "+0);
     }
 
 
@@ -57,14 +46,15 @@ public class Board {
 
     public void makeBotMove () {
 
-
+        //TODO: Create code for this
 
     }
 
     public static void main(String[] args) throws Exception {
 
         Board b = new Board();
-        b.makePlayerMove(0);
+        //b.makePlayerMove(0);
+        b.printCurrentBoard();
     }
 
 }
