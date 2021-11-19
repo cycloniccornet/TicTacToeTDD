@@ -1,11 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TurnStateTester {
 
@@ -33,15 +30,20 @@ public class TurnStateTester {
                assertNotNull(turn.getClass());
     }
 
-    @RepeatedTest(7)
+    @Test
     public void mustCheckForWhoPlayedLastAndReturnOppositePlayer() {
-        boolean wasItThePlayerLastTime = false;
 
-        if (!wasItThePlayerLastTime) {
-            assertTrue(whosTurn);
-
+        Boolean[] boolArray = new Boolean[10];
+        Boolean[] boolArray2 = {false, true, false, true, false, true, false, true, false, true};
 
 
+        for (int i = 0; i < boolArray.length; i++){
+
+            boolArray[i] = turn.checkWhosTurnItIs();
+       }
+         assertEquals(
+                 Arrays.toString(boolArray),
+                 Arrays.toString(boolArray2));
     }
 
 }
