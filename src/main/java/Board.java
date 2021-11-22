@@ -46,15 +46,50 @@ public class Board {
 
     public void makeBotMove () {
 
-        //TODO: Create code for this
+        int botAction = random.nextInt(10 - 1) + 1;
+
+
+        switch (botAction) {
+            case 1:
+                if ((currentBoard[0] == '0')) { currentBoard[0] = 'O'; } else { makeBotMove(); }
+                break;
+            case 2:
+                if ((currentBoard[1] == '0')) { currentBoard[1] = 'O'; } else { makeBotMove(); }
+                break;
+            case 3:
+                if ((currentBoard[2] == '0')) { currentBoard[2] = 'O'; } else { makeBotMove(); }
+                break;
+            case 4:
+                if ((currentBoard[3] == '0')) { currentBoard[3] = 'O'; } else { makeBotMove(); }
+                break;
+            case 5:
+                if ((currentBoard[4] == '0')) { currentBoard[4] = 'O'; } else { makeBotMove(); }
+                break;
+            case 6:
+                if ((currentBoard[5] == '0')) { currentBoard[5] = 'O'; } else { makeBotMove(); }
+                break;
+            case 7:
+                if ((currentBoard[6] == '0')) { currentBoard[6] = 'O'; } else { makeBotMove(); }
+                break;
+            case 8:
+                if ((currentBoard[7] == '0')) { currentBoard[7] = 'O'; } else { makeBotMove(); }
+                break;
+            case 9:
+                if ((currentBoard[8] == '0')) { currentBoard[8] = 'O'; } else { makeBotMove(); }
+                break;
+        }
+
 
     }
 
     public static void main(String[] args) throws Exception {
-
         Board b = new Board();
-        //b.makePlayerMove(0);
-        b.printCurrentBoard();
+        b.makePlayerMove(1);
+        b.makePlayerMove(2);
+        b.makePlayerMove(3);
+
+        b.makeBotMove();
+
     }
 
 }

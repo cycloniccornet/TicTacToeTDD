@@ -1,18 +1,20 @@
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameStateTester {
 
-    public char[] expectedStartingBoard = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    public char[] expectedStartingBoard = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
@@ -30,7 +32,6 @@ public class GameStateTester {
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
-
 
     @Test
     public void mustMatchGameObjectWithCurrentGameObject() {
@@ -55,7 +56,7 @@ public class GameStateTester {
 
     @Test
     public void mustCreateAStartingBoardWhenCallingCreateNewGame() {
-        char[] expectedStartingBoard = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
+        char[] expectedStartingBoard = { '0', '0', '0', '0', '0', '0', '0', '0', '0' };
 
         Board currentBoard = game.getBoard();
         char[] actualBoard = currentBoard.getStarterBoard();
@@ -72,18 +73,18 @@ public class GameStateTester {
 
     @Test
     public void mustUpdateCurrentBoardWhenMakingAPlacementOnFirstIndexWhenPlayingAsX() throws Exception {
-        char[] expectedBoardAfterPlayerAction = {'X', '0', '0', '0', '0', '0', '0', '0', '0'};
+       char[] expectedBoardAfterPlayerAction = { 'X', '0', '0', '0', '0', '0', '0', '0', '0' };
 
-        Board board = game.getBoard();
-        board.makePlayerMove(1);
-        char[] actualBoard = game.getCurrentBoard();
+       Board board = game.getBoard();
+       board.makePlayerMove(1);
+       char[] actualBoard = game.getCurrentBoard();
 
-        assertArrayEquals(expectedBoardAfterPlayerAction, actualBoard);
+       assertArrayEquals(expectedBoardAfterPlayerAction, actualBoard);
     }
 
     @Test
     public void mustUpdateCurrentBoardWhenMakingAPlacementOnThirdIndexWhenPlayingAsX() throws Exception {
-        char[] expectedBoardAfterPlayerAction = {'0', '0', 'X', '0', '0', '0', '0', '0', '0'};
+        char[] expectedBoardAfterPlayerAction = { '0', '0', 'X', '0', '0', '0', '0', '0', '0' };
 
         Board board = game.getBoard();
         board.makePlayerMove(3);
@@ -94,7 +95,7 @@ public class GameStateTester {
 
     @Test
     public void mustChangeEntireBoardToXWithoutParmarized() throws Exception {
-        char[] expectedBoardAfterPlayerAction = {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'};
+        char[] expectedBoardAfterPlayerAction = { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' };
 
         for (int i = 1; i < 10; i++) {
             board.makePlayerMove(i);
@@ -122,7 +123,25 @@ public class GameStateTester {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    public void mustBeAbleToReadTheCurrentBoardWhenPlayerHasMadeOneMove() throws Exception {
+        board.makePlayerMove(1);
+        char[] actualBoard = game.getCurrentBoard();
+        char[] expectedBoardAfterPlayerAction = { 'X', '0', '0', '0', '0', '0', '0', '0', '0' };
 
+        assertArrayEquals(expectedBoardAfterPlayerAction, actualBoard);
+    }
+
+    @Test
+    //@RepeatedTest(50)
+    public void mustBeAbleToMakeAMoveWhenPlayerHasMadeOneMove() throws Exception {
+        board.makePlayerMove(1);
+        char[] expectedBoardAfterPlayerAction = { 'X', '0', '0', '0', '0', '0', '0', '0', '0' };
+        board.makeBotMove();
+        char[] actualBoard = game.getCurrentBoard();
+
+        assertFalse(Arrays.equals(actualBoard, expectedBoardAfterPlayerAction));
+    }
 
 
     /* TODO: Find en måde den ikke reseter arrayet
@@ -140,20 +159,30 @@ public class GameStateTester {
     }
      */
 
-    // TODO: Find en måde hvorpå 2 strings kan sammenlignes uden line seperators
+    /* TODO: Find en måde hvorpå 2 strings kan sammenlignes uden line seperators
     @Test
     public void mustPrintTheCurrentLayoutOfTheBoardWhenNoTurnHasBeenMade() {
-        System.out.println("hej");
         game.createNewGame();
         Board currentBoard = game.getBoard();
         currentBoard.printCurrentBoard();
 
-        System.out.println("hej");
 
-        String board ="\t\t" +0+" | "+ 0 +" | "+0+"\n\t\t"+0+" | "+0+" | "+0+"\n\t\t"+0+" | "+0+" | "+0+"\n";
-
-        System.out.println(outputStreamCaptor.getClass().getName());
-        assertEquals(board
-                , outputStreamCaptor.toString());
+        assertEquals("0   | 0  | 0\n" +
+                " \t\t    |    |   \n" +
+                " \t\t ___|____|___ \n" +
+                "\n" +
+                "\n" +
+                "\t\t0   | 0  | 0\n" +
+                " \t\t    |    |   \n" +
+                " \t\t ___|____|___ \n" +
+                "\n" +
+                "\n" +
+                "\t\t0   | 0  | 0\n" +
+                " \t\t    |    |   \n" +
+                " \t\t    |    |", outputStreamCaptor.toString()
+                .trim().);
     }
+
+     */
+
 }
