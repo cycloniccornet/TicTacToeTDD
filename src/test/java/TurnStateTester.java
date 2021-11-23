@@ -34,7 +34,7 @@ public class TurnStateTester {
     public void mustCheckForWhoPlayedLastAndReturnOppositePlayer() {
 
         Boolean[] boolArray = new Boolean[10];
-        Boolean[] boolArray2 = {false, true, false, true, false, true, false, true, false, true};
+        Boolean[] boolArray2 = {true, false, true, false, true, false, true, false, true, false};
 
 
         for (int i = 0; i < boolArray.length; i++){

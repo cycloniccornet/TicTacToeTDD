@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Game {
 
     Board board;
@@ -28,7 +30,30 @@ public class Game {
         return turn;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Game game = new Game();
+        Board board = new Board();
+        Turn turn = new Turn();
+        Scanner scanner = new Scanner(System.in);
+
+        while (board.didSomeoneWin() == 0 ) {
+
+            board.printCurrentBoard();
+
+            boolean whoturn = turn.checkWhosTurnItIs();
+            if (whoturn) {
+                System.out.println("\nMake a move");
+                String playerAction = scanner.nextLine();
+                board.makePlayerMove(Integer.parseInt(playerAction));
+            } else {
+                System.out.println("\nBot is makeing a move");
+                board.makeBotMove();
+            }
+
+        }
+
+        if (board.didSomeoneWin() == 1) System.out.println("Player won");
+        if (board.didSomeoneWin() == 2) System.out.println("Bot won");
 
     }
 }

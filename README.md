@@ -1,4 +1,4 @@
-# Assignment 4. 
+# Assignment 4.
 
 ####Participants
 1. Martin Holmqvist
@@ -9,11 +9,11 @@
 #### How do you verify that a mock was called?
 
 In mockito you can verify if a specific method has been called x numbers of times. \
-This is done with the verify() method. 
+This is done with the verify() method.
 
     verify(mockObject).someMethodOfMockObject(someArgument);
 
-The verify() method checks by default if the class has been called one time but 
+The verify() method checks by default if the class has been called one time but
 can be set to check a specific number of times.
 
     verify(mockObject, times(someNumberOfTimes)).someMethodOfMockObject(someArgument);
@@ -43,9 +43,9 @@ To check if a method is called a specific number of times mockito has a method c
 
 #### How do you use a predicate to verify the properties of the arguments given to a call to the mock?
 
-????
+Mockito has multiple ways the create ArgumentMatchers. Using Fixed Values is one of them is to return fixed values:
 
-
+    doReturn("someClass").when(someService).analyze("propertiesToCheck");
 
 ## Tic-tac-toe
 

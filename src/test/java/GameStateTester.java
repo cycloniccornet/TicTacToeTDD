@@ -132,16 +132,49 @@ public class GameStateTester {
         assertArrayEquals(expectedBoardAfterPlayerAction, actualBoard);
     }
 
-    @Test
-    //@RepeatedTest(50)
+    //@Test
+    @RepeatedTest(50)
     public void mustBeAbleToMakeAMoveWhenPlayerHasMadeOneMove() throws Exception {
         board.makePlayerMove(1);
         char[] expectedBoardAfterPlayerAction = { 'X', '0', '0', '0', '0', '0', '0', '0', '0' };
+
         board.makeBotMove();
         char[] actualBoard = game.getCurrentBoard();
 
         assertFalse(Arrays.equals(actualBoard, expectedBoardAfterPlayerAction));
     }
+
+    @Test
+    public void botMustPlaceACounterWhenXCanWin() throws Exception {
+        board.makePlayerMove(1);
+        board.makePlayerMove(2);
+        char[] expectedBoardAfterBotMove = { 'X', 'X', 'O', '0', '0', '0', '0', '0', '0' };
+
+        board.makeBotMove();
+        char[] actualBoard = game.getCurrentBoard();
+
+        assertArrayEquals(expectedBoardAfterBotMove, actualBoard);
+    }
+
+    @Test
+    public void mustReturn1IfPlayerWins() throws Exception {
+        board.makePlayerMove(1);
+        board.makePlayerMove(2);
+        board.makePlayerMove(3);
+        board.printCurrentBoard();
+        assertEquals(1, board.didSomeoneWin());
+    }
+
+    @Test
+    public void mustReturn0IfNooneWins() throws Exception {
+        board.makePlayerMove(1);
+        board.makePlayerMove(2);
+        board.makePlayerMove(3);
+        board.printCurrentBoard();
+        assertEquals(1, board.didSomeoneWin());
+    }
+
+
 
 
     /* TODO: Find en måde den ikke reseter arrayet
